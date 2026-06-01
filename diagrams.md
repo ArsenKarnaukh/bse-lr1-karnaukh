@@ -1,14 +1,18 @@
+# UML Діаграми для проєкту LeanFork (ЛБ2)
+
+## 1. Діаграма прецедентів
+```mermaid
 graph TD
     Guest["Гість"]
     Premium["Преміум-користувач"]
 
-    UC1((UC-01: Створити чат))
-    UC2((UC-02: Обрати агента АІ))
-    UC3((UC-03: Обрати версію моделі))
-    UC4((UC-04: Ввести API-ключ))
-    UC5((UC-05: Переглянути історію))
-    UC6((UC-06: Закріпити чат))
-    UC7((UC-07: Автентифікація))
+    UC1((Створити чат))
+    UC2((Обрати агента АІ))
+    UC3((Обрати версію моделі))
+    UC4((Ввести API-ключ))
+    UC5((Переглянути історію))
+    UC6((Закріпити чат))
+    UC7((Автентифікація))
 
     Guest --> UC1
     Guest --> UC2
@@ -24,39 +28,38 @@ graph TD
     Premium --> UC6
     Premium --> UC7
 
-    UC1 -.-> UC7
-
+    UC1 -.-> UC7```
     classDiagram
     class User {
-        -int userId
-        -String name
-        -String email
-        -boolean isPremium
-        +login() boolean
-        +logout() void
+        userId
+        name
+        email
+        isPremium
+        login()
+        logout()
     }
     class ChatSession {
-        -int sessionId
-        -String title
-        -String currentContext
-        +createBranch() void
-        +deleteSession() void
+        sessionId
+        title
+        currentContext
+        createBranch()
+        deleteSession()
     }
     class AIAgent {
-        -String agentId
-        -String roleDescription
-        -String modelVersion
-        +generateResponse() String
+        agentId
+        roleDescription
+        modelVersion
+        generateResponse()
     }
     class ApiKeyManager {
-        -String encryptedKey
-        +validateKey() boolean
-        +saveKey() void
+        encryptedKey
+        validateKey()
+        saveKey()
     }
     class HistoryService {
-        -List savedChats
-        +getHistory() List
-        +pinChat() void
+        savedChats
+        getHistory()
+        pinChat()
     }
 
     User --> ChatSession : owns
@@ -64,22 +67,21 @@ graph TD
     User --> ApiKeyManager : manages
     User --> HistoryService : views
     HistoryService --> ChatSession : contains
-
     sequenceDiagram
-    actor U as Користувач
+    actor Користувач
     participant UI as ChatInterface
     participant Auth as AuthService
     participant Key as ApiKeyManager
     participant Agent as AIAgent
 
-    U ->> UI: Натискає Створити чат
+    Користувач ->> UI: Натискає Створити чат
     activate UI
     UI ->> Auth: перевірка автентифікації()
     activate Auth
-    Auth -->> UI: користувач авторизований
+    Auth -->> UI: авторизований
     deactivate Auth
 
-    U ->> UI: Обирає AI-агента
+    Користувач ->> UI: Обирає AI-агента
     UI ->> Key: отриматиВалідованийКлюч()
     activate Key
     Key -->> UI: API-key valid
@@ -90,6 +92,5 @@ graph TD
     Agent -->> UI: Агент готовий
     deactivate Agent
 
-    UI -->> U: Чат створено
+    UI -->> Користувач: Чат створено
     deactivate UI
-    
