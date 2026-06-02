@@ -6,8 +6,8 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
- "test": "npx jest test/ --coverage"
+"scripts": {
+  "test": "node node_modules/jest/bin/jest.js test/ --coverage"
 },
   "repository": {
     "type": "git",
