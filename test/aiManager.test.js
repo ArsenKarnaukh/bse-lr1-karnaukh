@@ -1,5 +1,4 @@
-const path = require('path');
-const AiManager = require(path.join(__dirname, '../bse-lr1-karnaukh/src/aiManager'));
+const AiManager = require("../bse-lr1-karnaukh/src/aiManager");
 
 describe("AiManager class tests", () => {
     
