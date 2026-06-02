@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-  "test": "jest test/ --coverage"
+ "test": "npx jest test/ --coverage"
 },
   "repository": {
     "type": "git",
