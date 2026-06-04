@@ -9,7 +9,7 @@ describe("AiManager class tests", () => {
         expect(manager.role).toBe("premium");
         expect(manager.tokens).toBe(1000);
     });
-
+ 
     // ТС2 Конструктор (порожня роль)
     test("constructor empty role (EP negative)", () => {
         expect(() => new AiManager("", 1000)).toThrow();
